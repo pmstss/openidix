@@ -1,0 +1,54 @@
+{
+	"name": "kalaidos-de",
+	"desc": "OpenID integration test",
+	"url": "https://kalaidos-de.test-weedu.ch/sts/openid/connect",
+	"oauth2": {
+		"authorize": {
+			"url": "/authorize",
+			"query": {
+				"client_id": "{client_id}",
+				"response_type": "id_token",
+				"redirect_uri": "{{callback}}",
+				"state": "{{state}}",
+				"scope": "{scope}",
+				"nonce": "{nonce}"
+			}
+		},
+		"access_token": {
+			"url": "/token",
+			"extra": [
+				"id_token"
+			]
+		},
+		"request": "https://kalaidos-de.test-weedu.ch/sts/openid/connect/",
+		"refresh": "/token",
+		"revoke": {
+			"url": "/revocation",
+			"method": "post",
+			"query": {
+				"token": "{{token}}"
+			}
+		},
+		"parameters": {
+			"client_id": "string",
+			"client_secret": "string",
+			"scope": {
+				"values": {
+					"openid": "openid",
+					"roles": "roles",
+					"profile": "profile",
+					"email": "email",
+					"address": "address",
+					"phone": "phone"
+				}
+			},
+			"nonce": "string"
+		}
+	},
+	"href": {
+		"keys": "https://kalaidos-de.test-weedu.ch",
+		"docs": "https://kalaidos-de.test-weedu.ch",
+		"apps": "https://kalaidos-de.test-weedu.ch",
+		"provider": "https://kalaidos-de.test-weedu.ch"
+	}
+}
