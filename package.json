@@ -1,0 +1,47 @@
+{
+  "name": "openidix",
+  "description": "Custom oauthd (https://github.com/oauth-io/oauthd) instance with some additional OpenID Connect functionality.",
+  "version": "0.0.1",
+  "author": "Viachaslau Tyshkavets <pmstss@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pmstss/openidix"
+  },
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "engines": {
+    "node": "7.x",
+    "npm": "4.x"
+  },
+  "bin": {
+    "openidix": "./openidix"
+  },
+  "scripts": {
+    "start": "./opendix"
+  },
+  "keywords": ["oauth", "oauth2", "oauthd", "openid", "openid connect"],
+  "dependencies": {
+    "async": "^2.1.2",
+    "body-parser": "^1.15.2",
+    "colors": "^1.1.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "fakeredis": "^1.0.3",
+    "ioredis": "^2.4.0",
+    "jsonfile": "^2.4.0",
+    "minimist": "^1.2.0",
+    "ncp": "^2.0.0",
+    "nodemailer": "^2.6.4",
+    "prompt": "^1.0.0",
+    "q": "^1.4.1",
+    "qs": "^6.3.0",
+    "request": "^2.78.0",
+    "restify": "^4.3.0",
+    "restify-oauth2-oauthd": "^4.0.4-oauthd",
+    "rimraf": "^2.5.4",
+    "sugar": "^2.0.2",
+    "ua-parser-js": "^0.7.12",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,40 @@
+{
+	"name": "Slack HQ",
+	"desc": "The Slack APIs allow you to integrate complex services with Slack to go beyond the integrations we provide out of the box.",
+	"url": "https://slack.com",
+	"oauth2": {
+		"authorize": "/oauth/authorize",
+		"access_token": "/api/oauth.access",
+		"request": {
+			"query": {
+				"token": "{{token}}"
+			},
+			"cors": true
+		},
+		"refresh": "/token",
+		"parameters": {
+			"client_id": "string",
+			"client_secret": "string",
+			"scope": {
+				"values": {
+					"bot": "Slack-App: request this scope when your Slack app includes bot user functionality. Unlike incoming-webhook and commands, the bot scope grants your bot user access to a subset of Web API methods.",
+					"commands": "Slack App: similarly, requesting this scope allows teams to install slash commands bundled in your Slack app.",
+					"incoming-webhook": "Slack App: requesting this scope during the authentication process allows teams to easily install an incoming webhook that can post from your app to a single Slack channel.",
+					"identify": "Allows applications to confirm your identity.",
+					"client": "Allows applications to connect to slack as a client, and post messages on behalf of the user.",
+					"admin": "Allows applications to perform administrative actions, requires the authed user is an admin.",
+					"chat:write:bot": "chat.delete, chat.postMessage, chat.update API methods",
+					"chat:write:user": "chat.delete, chat.meMessage, chat.postMessage, chat.update API methods",
+					"channels:read": "channels.info, channels.list",
+					"users:read": "For /me profile"
+				}
+			}
+		}
+	},
+	"href": {
+		"keys": "https://api.slack.com/applications/new",
+		"docs": "https://api.slack.com/",
+		"apps": "https://api.slack.com/applications",
+		"provider": "https://github.com/"
+	}
+}
