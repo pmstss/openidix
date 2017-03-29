@@ -1,0 +1,22 @@
+{
+	"settings": {
+		"createApp": {
+			"url": "https://kalaidos-de.test-weedu.ch/sts/openid/.well-known/openid-configuration",
+			"image": "config.png"
+		},
+		"copyingKey": {
+			"url": "https://kalaidos-de.test-weedu.ch/sts/openid/.well-known/openid-configurationh",
+			"image": "keys.png"
+		},
+		"install": {
+			"href": {
+				"provider": "https://kalaidos-de.test-weedu.ch/sts/openid/.well-known/openid-configuration",
+				"docs": "https://kalaidos-de.test-weedu.ch/sts/openid/.well-known/openid-configuration"
+			}
+		},
+		"sample": {
+			"method": "get",
+			"url": "https://kalaidos-de.test-weedu.ch/sts/openid/connect/userinfo/?SCHEMA"
+		}
+	}
+}

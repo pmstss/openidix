@@ -4,30 +4,18 @@
 	"url": "https://kalaidos-de.test-weedu.ch/sts/openid/connect",
 	"oauth2": {
 		"authorize": {
-			"url": "/authorize",
+			"url": "https://kalaidos-de.test-weedu.ch/sts/openid/connect/authorize",
 			"query": {
 				"client_id": "{client_id}",
-				"response_type": "id_token",
+				"response_type": "code",
+				"scope": "openid email",
 				"redirect_uri": "{{callback}}",
-				"state": "{{state}}",
-				"scope": "{scope}",
-				"nonce": "{nonce}"
+				"state": "{{state}}"
 			}
 		},
 		"access_token": {
-			"url": "/token",
-			"extra": [
-				"id_token"
-			]
-		},
-		"request": "https://kalaidos-de.test-weedu.ch/sts/openid/connect/",
-		"refresh": "/token",
-		"revoke": {
-			"url": "/revocation",
-			"method": "post",
-			"query": {
-				"token": "{{token}}"
-			}
+			"url": "https://kalaidos-de.test-weedu.ch/sts/openid/connect/token",
+			"extra": ["id_token"]
 		},
 		"parameters": {
 			"client_id": "string",
@@ -41,8 +29,7 @@
 					"address": "address",
 					"phone": "phone"
 				}
-			},
-			"nonce": "string"
+			}
 		}
 	},
 	"href": {

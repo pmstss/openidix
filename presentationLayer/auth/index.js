@@ -12,14 +12,15 @@ module.exports = function(env) {
   return {
     init: function() {},
     registerWs: function() {
-      var auth_middleware, clientCallback, createMiddlewareChain, middlewares_connectauth_chain;
+      var auth_middleware, clientCallback;
       if (!env.middlewares.connectauth) {
         env.middlewares.connectauth = {};
       }
       if (!env.middlewares.connectauth.all) {
         env.middlewares.connectauth.all = [];
       }
-      createMiddlewareChain = function() {
+
+      var middlewares_connectauth_chain = (function() {
         return function(req, res, next) {
           var chain, fn, i, k, middleware, ref1;
           chain = [];
@@ -41,8 +42,8 @@ module.exports = function(env) {
             return next();
           });
         };
-      };
-      middlewares_connectauth_chain = createMiddlewareChain();
+      })();
+
       env.server.post(env.config.base + '/auth/refresh_token/:provider', middlewares_connectauth_chain, function(req, res, next) {
         var e;
         e = new env.utilities.check.Error;
@@ -85,7 +86,10 @@ module.exports = function(env) {
           });
         });
       });
+
       env.server.get(env.config.base + '/auth/iframe', middlewares_connectauth_chain, function(req, res, next) {
+        console.log('### inside iframe');  
+          
         var content, e, origin;
         res.setHeader('Content-Type', 'text/html');
         res.setHeader('p3p', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
@@ -125,6 +129,7 @@ module.exports = function(env) {
         res.send(content);
         return next();
       });
+
       env.server.post(env.config.base + '/auth/access_token', middlewares_connectauth_chain, function(req, res, next) {
         var e;
         e = new env.utilities.check.Error;
@@ -162,8 +167,13 @@ module.exports = function(env) {
           });
         });
       });
+
       clientCallback = function(data, req, res, next) {
+        console.log('### clientCallback', JSON.stringify(data));
+
         return function(e, r, response_type) {
+          console.log('### clientCallback inside', JSON.stringify(e), JSON.stringify(r), JSON.stringify(response_type));
+            
           var body, browser, chromeext, redirect_infos, ref1, uaparser, view;
           if (!e && data.redirect_uri) {
             redirect_infos = Url.parse(env.fixUrl(data.redirect_uri), true);
@@ -187,6 +197,9 @@ module.exports = function(env) {
           view += '<html><head><script>(function() {\n';
           view += '\t"use strict";\n';
           view += '\tvar msg=' + JSON.stringify(JSON.stringify(body)) + ';\n';
+      
+          console.log('### clientCallback body: ', JSON.stringify(body));
+      
           if (data.redirect_uri) {
             if (data.redirect_uri.indexOf('#') > 0) {
               view += '\tdocument.location.href = "' + data.redirect_uri + '&oauthio=" + encodeURIComponent(msg);\n';
@@ -226,10 +239,10 @@ module.exports = function(env) {
           return next();
         };
       };
+
       auth_middleware = function(req, res, next) {
-        var getState;
         res.setHeader('Content-Type', 'text/html');
-        getState = function(callback) {
+        var getState = function(callback) {
           var oaio_uid, ref1, ref2, stateid, stateref;
           if (req.params.state) {
             return callback(null, req.params.state);
@@ -245,6 +258,7 @@ module.exports = function(env) {
           if (oaio_uid) {
             return env.data.redis.get('cli:state:' + oaio_uid, callback);
           }
+          console.log('### unknown state');
         };
         return getState(function(err, stateid) {
           if (err) {
@@ -255,6 +269,7 @@ module.exports = function(env) {
           }
           return env.data.states.get(stateid, function(err, state) {
             if (err) {
+              console.log('### error getting state by stateid', stateid, err);
               return next(err);
             }
             if (!state) {
@@ -266,12 +281,17 @@ module.exports = function(env) {
           });
         });
       };
+
       env.server.get(env.config.base + '/auth', auth_middleware, middlewares_connectauth_chain, function(req, res, next) {
         var callback, state, stateid;
         stateid = req.stateid;
         state = req.state;
         delete req.stateid;
         delete req.state;
+    
+        console.log('### /auth - state: ', JSON.stringify(state));
+        console.log('### /auth - req.params: ', req.params);
+    
         callback = clientCallback({
           state: state.options.state,
           provider: state.provider,
@@ -297,12 +317,19 @@ module.exports = function(env) {
             if (err) {
               return callback(err);
             }
+            
+            console.log('### /auth - r: ', r);
+            
             provider = r[0];
             parameters = r[1].parameters;
             response_type = r[1].response_type;
             app_options = r[1].options;
+
+            console.log('### before access_token call');
             oa = new env.utilities.oauth[state.oauthv](provider, parameters, app_options);
             return oa.access_token(state, req, function(e, r) {
+              console.log('### access_token - e: ', e);
+                
               var status;
               status = e ? 'error' : 'success';
               return env.callhook('connect.auth', req, res, function(err) {
@@ -355,6 +382,7 @@ module.exports = function(env) {
           };
         })(this));
       });
+
       return env.server.get(env.config.base + '/auth/:provider', function(req, res, next) {
         var callback, domain, e, error, key, oauthv, options, origin, provider_conf, ref, ref_origin, urlinfos;
         res.setHeader('Content-Type', 'text/html');

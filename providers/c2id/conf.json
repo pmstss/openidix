@@ -1,0 +1,41 @@
+{
+	"name": "c2id",
+	"desc": "OpenID integration test",
+	"url": "http://127.0.0.1:8080/c2id",
+	"oauth2": {
+		"authorize": {
+			"url": "http://127.0.0.1:8080/c2id-login-page-js",
+			"query": {
+				"client_id": "{client_id}",
+				"response_type": "code",
+				"scope": "openid email",
+				"redirect_uri": "{{callback}}",
+				"state": "{{state}}"
+			}
+		},
+		"access_token": {
+			"url": "http://127.0.0.1:8080/c2id/token",
+			"extra": ["id_token"]
+		},
+		"parameters": {
+			"client_id": "string",
+			"client_secret": "string",
+			"scope": {
+				"values": {
+					"openid": "openid",
+					"roles": "roles",
+					"profile": "profile",
+					"email": "email",
+					"address": "address",
+					"phone": "phone"
+				}
+			}
+		}
+	},
+	"href": {
+		"keys": "http://127.0.0.1:8080/c2id",
+		"docs": "http://127.0.0.1:8080/c2id",
+		"apps": "http://127.0.0.1:8080/c2id",
+		"provider": "http://127.0.0.1:8080/c2id"
+	}
+}

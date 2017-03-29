@@ -197,6 +197,7 @@ module.exports = function(env) {
     OAuthBase.prototype._setExtraRequestAuthorizeParameters = function(request, data) {
       var extra, i, len, ref, results;
       ref = this._oauthConfiguration.authorize.extra || [];
+      console.log('### extra params:', ref);
       results = [];
       for (i = 0, len = ref.length; i < len; i++) {
         extra = ref[i];
@@ -230,6 +231,7 @@ module.exports = function(env) {
           headers[name] = param;
         }
       }
+      console.log('### headers', headers);
       return headers;
     };
 
@@ -244,6 +246,7 @@ module.exports = function(env) {
         qs: method === 'GET' ? query : void 0,
         headers: Object.keys(headers).length ? headers : void 0
       };
+      console.log('### options', options);
       return options;
     };
 
