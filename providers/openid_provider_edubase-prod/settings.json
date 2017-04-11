@@ -1,0 +1,22 @@
+{
+	"settings": {
+		"createApp": {
+			"url": "https://edubase-de.weedu.ch/sts/openid/.well-known/openid-configuration",
+			"image": "config.png"
+		},
+		"copyingKey": {
+			"url": "https://edubase-de.weedu.ch/sts/openid/.well-known/openid-configurationh",
+			"image": "keys.png"
+		},
+		"install": {
+			"href": {
+				"provider": "https://edubase-de.weedu.ch/sts/openid/.well-known/openid-configuration",
+				"docs": "https://edubase-de.weedu.ch/sts/openid/.well-known/openid-configuration"
+			}
+		},
+		"sample": {
+			"method": "get",
+			"url": "https://edubase-de.weedu.ch/sts/openid/connect/userinfo/?SCHEMA"
+		}
+	}
+}
