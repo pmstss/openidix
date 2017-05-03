@@ -64,7 +64,7 @@ module.exports = function(env) {
       configuration = this._oauthConfiguration.access_token;
       placeholderValues = {
         code: req.params.code,
-        session_state: req.params.session_state,
+        //session_state: req.params.session_state,
         state: state.id,
         callback: this._serverCallbackUrl
       };
@@ -72,7 +72,7 @@ module.exports = function(env) {
       this._setExtraRequestAuthorizeParameters(req, placeholderValues);
       console.log('### configuration.query: ', configuration.query);
       query = this._buildQuery(configuration.query, placeholderValues);
-      query['session_state'] = req.params.session_state;
+      //query['session_state'] = req.params.session_state;
       headers = this._buildHeaders(configuration);
       options = this._buildRequestOptions(configuration, headers, query, placeholderValues);
       options.followAllRedirects = true;
