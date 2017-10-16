@@ -1,22 +1,22 @@
 {
 	"settings": {
 		"createApp": {
-			"url": "https://edubase-de.test-weedu.ch/sts/openid/.well-known/openid-configuration",
+			"url": "https://l5.digicomp.ch/.well-known/openid-configuration",
 			"image": "config.png"
 		},
 		"copyingKey": {
-			"url": "https://edubase-de.test-weedu.ch/sts/openid/.well-known/openid-configurationh",
+			"url": "https://l5.digicomp.ch/.well-known/openid-configuration",
 			"image": "keys.png"
 		},
 		"install": {
 			"href": {
-				"provider": "https://edubase-de.test-weedu.ch/sts/openid/.well-known/openid-configuration",
-				"docs": "https://edubase-de.test-weedu.ch/sts/openid/.well-known/openid-configuration"
+				"provider": "https://l5.digicomp.ch/.well-known/openid-configuration",
+				"docs": "https://l5.digicomp.ch/.well-known/openid-configuration"
 			}
 		},
 		"sample": {
 			"method": "get",
-			"url": "https://edubase-de.test-weedu.ch/sts/openid/connect/userinfo/?SCHEMA"
+			"url": "https://l5.digicomp.ch/oauth/userinfo?SCHEMA"
 		}
 	}
 }

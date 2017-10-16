@@ -1,20 +1,20 @@
 {
 	"name": "edubase-de",
 	"desc": "OpenID integration test",
-	"url": "https://edubase-de.test-weedu.ch/sts/openid/connect",
+	"url": "https://l5.digicomp.ch",
 	"oauth2": {
 		"authorize": {
-			"url": "https://edubase-de.test-weedu.ch/sts/openid/connect/authorize",
+			"url": "https://l5.digicomp.ch/anmelden",
 			"query": {
 				"client_id": "{client_id}",
 				"response_type": "code",
-				"scope": "openid email",
+				"scope": "openid",
 				"redirect_uri": "{{callback}}",
 				"state": "{{state}}"
 			}
 		},
 		"access_token": {
-			"url": "https://edubase-de.test-weedu.ch/sts/openid/connect/token",
+			"url": "https://l5.digicomp.ch/oauth/token",
 			"extra": ["id_token"]
 		},
 		"parameters": {
@@ -33,9 +33,9 @@
 		}
 	},
 	"href": {
-		"keys": "https://edubase-de.test-weedu.ch",
-		"docs": "https://edubase-de.test-weedu.ch",
-		"apps": "https://edubase-de.test-weedu.ch",
-		"provider": "https://edubase-de.test-weedu.ch"
+		"keys": "https://l5.digicomp.ch",
+		"docs": "https://l5.digicomp.ch",
+		"apps": "https://l5.digicomp.ch",
+		"provider": "https://l5.digicomp.ch"
 	}
 }
