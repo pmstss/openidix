@@ -1,20 +1,20 @@
 {
 	"name": "edubase-de-prod",
 	"desc": "OpenID integration test",
-	"url": "https://edubase-de.weedu.ch/sts/openid/connect",
+	"url": "https://www.digicomp.ch",
 	"oauth2": {
 		"authorize": {
-			"url": "https://edubase-de.weedu.ch/sts/openid/connect/authorize",
+			"url": "https://www.digicomp.ch/anmelden",
 			"query": {
 				"client_id": "{client_id}",
 				"response_type": "code",
-				"scope": "openid email",
+				"scope": "openid",
 				"redirect_uri": "{{callback}}",
 				"state": "{{state}}"
 			}
 		},
 		"access_token": {
-			"url": "https://edubase-de.weedu.ch/sts/openid/connect/token",
+			"url": "https://www.digicomp.ch/oauth/token",
 			"extra": ["id_token"]
 		},
 		"parameters": {
@@ -33,9 +33,9 @@
 		}
 	},
 	"href": {
-		"keys": "https://edubase-de.weedu.ch",
-		"docs": "https://edubase-de.weedu.ch",
-		"apps": "https://edubase-de.weedu.ch",
-		"provider": "https://edubase-de.weedu.ch"
+		"keys": "https://www.digicomp.ch",
+		"docs": "https://www.digicomp.ch",
+		"apps": "https://www.digicomp.ch",
+		"provider": "https://www.digicomp.ch"
 	}
 }
