@@ -1,0 +1,22 @@
+{
+	"settings": {
+		"createApp": {
+			"url": "https://www.digicomp.ch/.well-known/openid-configuration",
+			"image": "config.png"
+		},
+		"copyingKey": {
+			"url": "https://www.digicomp.ch/.well-known/openid-configuration",
+			"image": "keys.png"
+		},
+		"install": {
+			"href": {
+				"provider": "https://www.digicomp.ch/.well-known/openid-configuration",
+				"docs": "https://www.digicomp.ch/.well-known/openid-configuration"
+			}
+		},
+		"sample": {
+			"method": "get",
+			"url": "https://www.digicomp.ch/oauth/userinfo?SCHEMA"
+		}
+	}
+}
